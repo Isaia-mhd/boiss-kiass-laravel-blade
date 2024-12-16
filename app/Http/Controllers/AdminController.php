@@ -27,27 +27,31 @@ class AdminController extends Controller
             'short_description' => 'required|max:20',
             'description' => 'required',
             'price' => 'required|numeric',
-            'image' => 'image|required'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max:2MB
         ]);
 
-        
-        if (request()->has('image')) {
-            
+
+        if (request()->hasFile('image')) {
+
             $imagePath = request()->file('image')->store('articles', 'public');
             $validated['image'] = $imagePath;
         }
 
+        try {
+            Article::create([
+                'name' => $validated['name'],
+                'short_description' => $validated['short_description'],
+                'description' => $validated['description'],
+                'price' => $validated['price'],
+                'image' => $validated['image'],
+            ]);
 
+            return redirect()->route('article.article')->with('success', 'New article created successfully!');
+        } catch (\Exception $e) {
+            // Gestion des erreurs éventuelles
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
 
-        Article::create([
-            'name' => $validated['name'],
-            'short_description' => $validated['short_description'],
-            'description' => $validated['description'],
-            'price' => $validated['price'],
-            'image' => $validated['image'],
-        ]);
-
-        return redirect()->route('article.article')->with('success', 'New article created successfully !');
     }
     public function edit(Article $article){
 
@@ -63,9 +67,9 @@ class AdminController extends Controller
             'image' => 'image',
         ]);
 
-        
+
         if (request()->has('image')) {
-            
+
             $imagePath = request()->file('image')->store('articles', 'public');
             $validated['image'] = $imagePath;
         }

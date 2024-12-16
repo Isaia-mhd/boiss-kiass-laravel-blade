@@ -9,7 +9,9 @@
         @foreach ($articles as $article)
             <div class="w-full h-[350px] bg-slate-200 border border-gray-200 shadow-lg hover:shadow-xl rounded px-3 py-3 mb-6">
                 <div class="w-full h-[90%]">
-                    <img src="{{ $article->getImageUrl() }}" alt="img" class="w-full rounded-tr-3xl rounded-tl-3xl" />
+                    <div class="h-[60%] rounded-md"  style="background-image: url('{{ asset('storage/' . $article->image) }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                        {{-- <img src="{{ asset('storage/' . $article->image) }}" className="w-full" alt="{{ $article->name }}"> --}}
+                    </div>
                     <h2 class="text-yellow-500 font-bold text-2xl"> {{ $article->name }} </h2>
                     <p class="text-sm text-gray-500"> <span class="font-semibold">Pre-Description:</span>
                         {{ $article->short_description }} </p>

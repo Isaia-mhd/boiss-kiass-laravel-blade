@@ -23,7 +23,7 @@
                 @foreach($articles as $article)
                     <tr class="text-center text-sm border shadow-lg">
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">{{ $article->id }}</td>
-                        <td class="border py-2 border-y-8 border-x-0  border-y-white"><img src="{{ asset('articles/' . $article->image) }}" class="w-[30px] h-[30px]" alt="img"></td>
+                        <td class="border py-2 border-y-8 border-x-0  border-y-white"><img src="{{ asset('storage/' . $article->image) }}" class="w-[30px] h-[30px] mx-auto rounded-sm" alt="img"></td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">{{ $article->name }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">${{ $article->price }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">{{ $article->short_description }}</td>
@@ -43,9 +43,9 @@
                 @endforeach
             </tbody>
         </table>
-        
+
         <div class="w-full max-w-[90%] mx-auto mt-3">{{ $articles->links('pagination::tailwind') }}</div>
 
-       
+
     </div>
 @endsection

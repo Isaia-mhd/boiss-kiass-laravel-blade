@@ -38,11 +38,11 @@ Route::post('login', [UserController::class, 'login']);
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('user/profile', [UserController::class, 'profile'])
+Route::get('profile', [UserController::class, 'profile'])
     ->name('profile')
     ->middleware('auth');
 
-Route::get('user/basket', [UserController::class, 'basket'])
+Route::get('profile/basket', [UserController::class, 'basket'])
     ->name('basket.show')
     ->middleware('auth');
 

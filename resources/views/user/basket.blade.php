@@ -23,7 +23,7 @@
                 @foreach($baskets as $basket)
                     <tr class="text-center text-sm border shadow-lg">
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">{{ $basket->quantity }}</td>
-                        <td class="border py-2 border-y-8 border-x-0  border-y-white"><img src="{{ asset('articles/' . $basket->image) }}" class="w-[30px] h-[30px]" alt="img"></td>
+                        <td class="border py-2 border-y-8 border-x-0  border-y-white"><img src="{{ asset('storage/' . $basket->articles->image) }}" class="w-[30px] h-[30px] rounded-sm" alt="img"></td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">{{ $basket->articles->name }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">${{ $basket->price_unit }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-white">${{ $basket->total_price }}</td>
