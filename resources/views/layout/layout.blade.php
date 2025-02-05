@@ -13,7 +13,7 @@
     <title> {{ config('app.name') }} </title>
 </head>
 
-<body>
+<body class="bg-slate-950">
     <header
         class="w-full h-14 bg-gradient-to-r from-violet-800 to-emerald-400 shadow-md rounded-br-xl rounded-bl-xl mb-6">
         <div class="flex items-center h-14 justify-between w-full max-w-[90%] mx-auto">
@@ -32,13 +32,15 @@
                     <li><a href="{{ route('home') }}"
                             class="hover:text-amber-400 text-white transition duration-150 ease-in-out">Home</a></li>
                     <li><a href="{{ route('article.article') }}"
-                            class="hover:text-amber-400 text-white transition duration-150 ease-in-out">Menu</a></li>
+                            class="hover:text-amber-400 text-white transition duration-150 ease-in-out">Shop</a></li>
                     
                     @auth
+                        <li><a href="{{ route('profile') }}"
+                        class="hover:text-amber-400 text-white transition duration-150 ease-in-out">Chat Bot</a></li>
                         
                         <li><a href="{{ route('profile') }}"
                                 class="hover:text-amber-400 text-white transition duration-150 ease-in-out">
-                                {{ auth()->user()->name }} </a></li>
+                                Profile </a></li>
                         
                         <li><a href="{{ route('logout') }}"
                                 class="hover:text-amber-400 text-white transition duration-150 ease-in-out">Logout</a></li>
@@ -62,6 +64,10 @@
         
         @yield('content')
     </section>
+
+    <footer class="w-full h-[50px] bg-blue-950 flex justify-center items-center mt-[400px] ">
+        <p class="text-white font-light text-sm ">copyright&copy; {{ date("Y") }} Developped by Isaia Mohamed</p>
+    </footer>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> --}}
 </body>
 

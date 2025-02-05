@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('content')
-    <h1 class="text-center text-2xl font-semibold">Register page</h1>
+    <h1 class="text-center text-2xl font-semibold text-white">Register page</h1>
     <form action="{{route("register")}}" method="post" class="w-full mt-6 py-7 bg-violet-950 rounded-lg shadow-md max-w-[90%] sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] mx-auto flex flex-col gap-5 items-center justify-center">
         @csrf
         <div class="flex flex-col gap-1 w-full max-w-[90%]">

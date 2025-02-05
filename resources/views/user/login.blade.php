@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('content')
-    <h1 class="text-center text-2xl font-semibold">Login page</h1>
+    <h1 class="text-center text-2xl font-semibold text-white">Login page</h1>
     <form action="{{route("login")}}" method="post" class="w-full mt-6 py-7 bg-violet-950 rounded-lg shadow-md max-w-[90%] sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] mx-auto flex flex-col gap-5 items-center justify-center">
         @csrf
         <div class="flex flex-col gap-1 w-full max-w-[90%]">
@@ -24,9 +24,14 @@
         </div>
         <div class="flex items-center justify-between w-full max-w-[90%] mx-auto">
             <a href="{{route('register')}}" class="text-sm text-white">Don-t have an account ? <span class="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out">Register</span></a>
-            <a href="{{route('register')}}" class="text-sm text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out">Forgot password ?</a>
+            <a href="{{route('register')}}" class="text-sm text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out ">Forgot password ?</a>
 
         </div>
+
+        <div class="">
+            <a href=" {{ route("redirect") }} " class="uppercase bg-red-800 text-white font-medium text-md py-1 px-3 rounded-lg">Login with Google</a>
+        </div>
+        @include("notify.error")
     </form>
 
 @endsection

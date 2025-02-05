@@ -27,7 +27,7 @@ class AdminController extends Controller
             'short_description' => 'required|max:20',
             'description' => 'required',
             'price' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // max:2MB
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // max:2MB
         ]);
 
 
