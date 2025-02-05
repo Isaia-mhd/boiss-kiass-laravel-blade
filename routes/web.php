@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -98,3 +99,13 @@ Route::post('basket/add/article-{article}', [BasketController::class, 'addToBask
 Route::delete('basket/delete/article-{basket}', [BasketController::class, 'delete'])
     ->name('basket.delete')
     ->middleware('auth');
+
+
+
+
+// STRIPE PAYMENT
+
+Route::get('/checkout/{basket}', [PaymentController::class, 'checkout'])->name('checkout');
+Route::post('/payment/{basket}', [PaymentController::class, 'payment'])->name('payment');
+Route::get('/success/{basket}', [PaymentController::class, 'success'])->name('success');
+Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');

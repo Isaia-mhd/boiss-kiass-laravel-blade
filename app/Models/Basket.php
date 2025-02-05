@@ -14,7 +14,8 @@ class Basket extends Model
         "article_id",
         "quantity",
         "price_unit",
-        "total_price"
+        "total_price",
+        "status"
     ];
 
     public function articles(){

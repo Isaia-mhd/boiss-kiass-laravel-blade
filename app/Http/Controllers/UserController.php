@@ -91,7 +91,7 @@ class UserController extends Controller
     }
 
     public function basket(){
-        $baskets = Basket::where("user_id", "=", auth()->id())->paginate(5);
+        $baskets = Basket::where("user_id", "=", auth()->id())->orderBy("created_at","desc")->paginate(5);
         return view("user.basket", compact("baskets"));
     }
 
