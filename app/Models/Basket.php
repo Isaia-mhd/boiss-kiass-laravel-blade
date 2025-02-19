@@ -21,4 +21,8 @@ class Basket extends Model
     public function articles(){
         return $this->belongsTo(Article::class,"article_id");
     }
+
+    public function users(){
+        return $this->belongsTo(User::class, "user_id");
+    }
 }

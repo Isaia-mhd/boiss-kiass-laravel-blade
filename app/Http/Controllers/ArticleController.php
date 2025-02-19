@@ -13,7 +13,7 @@ class ArticleController extends Controller
         return view('page.menu', compact('articles'));
     }
 
-    
+
     public function show($id)
     {
         $article = Article::find($id);
@@ -22,9 +22,9 @@ class ArticleController extends Controller
     }
 
     public function search(){
-        
 
-            
+
+
             $search = request()->get("search", "");
             $articles = Article::where("name", "like", "%". $search . "%")
             ->orWhere("short_description", "like", "%" . $search . "%")
@@ -32,7 +32,7 @@ class ArticleController extends Controller
             ->get();
 
             return view("page.searched_article", compact("articles"));
-        
-        
+
+
     }
 }

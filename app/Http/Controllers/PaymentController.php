@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PaymentCompleted;
 use App\Models\Basket;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
@@ -35,16 +36,19 @@ class PaymentController extends Controller
         ]);
 
         return redirect($session->url);
+
        } catch (\Stripe\Exception\ApiConnectionException $e) {
         // Network error (e.g., no internet or Stripe service is down)
         return back()->with('error', 'Could not connect to Stripe. Please check your internet connection.');
-    } catch (\Stripe\Exception\ApiErrorException $e) {
-        // General Stripe API error
-        return back()->with('error', 'Payment error: ' . $e->getMessage());
-    } catch (\Exception $e) {
-        // Other errors (server issues, etc.)
-        return back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
-    }
+
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            // General Stripe API error
+            return back()->with('error', 'Payment error: ' . $e->getMessage());
+
+        } catch (\Exception $e) {
+            // Other errors (server issues, etc.)
+            return back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
+        }
     }
 
 
@@ -55,7 +59,23 @@ class PaymentController extends Controller
             $paid->update([
                 "status" => "Paid"
             ]);
+
+            $paymentData = [
+                "payment_id"=> $paid->id,
+                "amount"=> $paid->total_price,
+                "article" => $paid->articles->name,
+                "date" => now(),
+                "user" => [
+                    "email"=> $paid->users->email,
+                    "name" => $paid->users->name
+                ]
+            ];
+
+
+            event(new PaymentCompleted($paymentData));
+
             return redirect()->route("basket.show")->with("success", "Article was paid successfully !");
+
         } catch (\Throwable $th) {
             throw $th;
         }

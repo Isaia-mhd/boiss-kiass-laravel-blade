@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view("admin.dashboard");
+        $users = User::all();
+        $usersTotal = count($users);
+        return view("admin.dashboard", compact(["usersTotal"]));
     }
     public function showArticle(){
         $articles = Article::orderBy("updated_at", "desc")->paginate(8);

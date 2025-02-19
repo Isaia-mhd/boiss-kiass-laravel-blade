@@ -23,12 +23,12 @@
                 @foreach($baskets as $basket)
                     <tr class="text-center text-sm shadow-lg">
                         <td class="border py-2 border-y-8 border-x-0  border-y-slate-900">{{ $basket->quantity }}</td>
-                        <td class="border py-2 border-y-8 border-x-0  border-y-slate-900"><img src="{{ asset('storage/' . $basket->articles->image) }}" class="w-[30px] h-[30px] rounded-sm" alt="img"></td>
+                        <td class="border py-2 border-y-8 border-x-0  border-y-slate-900 flex justify-center"><img src="{{ asset('storage/' . $basket->articles->image) }}" class="w-[30px] h-[30px] rounded-sm" alt="img"></td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-slate-900">{{ $basket->articles->name }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-slate-900">${{ $basket->price_unit }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-slate-900">${{ $basket->total_price }}</td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-slate-900">
-                            
+
                                 <button type="button" class="{{ $basket->status == "Paid" ? "" : "bg-green-500 bg-opacity-20 border-[1px] border-green-500" }} py-1 px-3 lg:px-7 rounded text-sm text-green-600 transition duration-150 ease-in-out">
 
                                     @if ($basket->status == "Paid")
@@ -38,7 +38,7 @@
                                         <a href="{{ route('checkout', $basket) }}"> {{ $basket->status === "Paid" ? "Paid" : "Pay"}} </a>
                                     @endif
                                 </button>
-                            
+
                         </td>
                         <td class="border py-2 border-y-8 border-x-0  border-y-slate-900">
                             <form action="{{ route('basket.delete', $basket->id) }}" method="post">

@@ -14,7 +14,8 @@ class Article extends Model
         "short_description",
         "description",
         "price",
-        "image"
+        "image",
+        "imageUrls"
     ];
 
     public function getImageUrl(){
